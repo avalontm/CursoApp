@@ -23,8 +23,13 @@ namespace CursoApp
         static async Task onLogin()
         {
             LoginModel cuenta = new LoginModel();
-            cuenta.email = "avalontm@curso.com";
-            cuenta.contrasena = "cinder";
+
+            Console.WriteLine("Escribe tus credenciales.");
+            Console.Write($"Email: ");
+            cuenta.email = Console.ReadLine();
+
+            Console.Write($"Contraseña: ");
+            cuenta.contrasena = Console.ReadLine();
 
             string result = await ApiManager.Post(cuenta, "/api/login");
 
