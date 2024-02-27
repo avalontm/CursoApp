@@ -45,6 +45,7 @@ namespace CursoApp
 
             if (!string.IsNullOrEmpty(apikey))
             {
+                //Colocamos nuestra apikey que obtuvimos.
                 ApiManager.CreateKey("api-key", apikey);
             }
 
