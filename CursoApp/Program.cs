@@ -35,7 +35,7 @@ namespace CursoApp
         static async Task onLogin()
         {
             // Crear un diccionario vacío
-            var cuenta = new Dictionary<string, string>();
+            var cuenta = new Dictionary<string, string?>();
 
             Console.WriteLine("Escribe tus credenciales.");
             Console.Write($"Email: ");
@@ -74,7 +74,7 @@ namespace CursoApp
         {
             Console.WriteLine("Escribe el id del curso.");
             Console.Write($"Id: ");
-            string curso_id = Console.ReadLine();
+            string? curso_id = Console.ReadLine();
 
 
             await ConsoleEx.WaitStart("obtiniendo informacion del curso");
@@ -105,7 +105,7 @@ namespace CursoApp
 
         static async Task onCompletCurso()
         {
-            var curso = new Dictionary<string, string>();
+            var curso = new Dictionary<string, string?>();
 
             Console.WriteLine("Escribe el id del curso.");
             Console.Write($"Id: ");
