@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PluginAPI" Version="1.0.5" />
+    <PackageReference Include="PluginAPI" Version="1.0.7" />
   </ItemGroup>
 
 </Project>
