@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="PluginAPI" Version="1.0.7" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.2" />
   </ItemGroup>
 
 </Project>

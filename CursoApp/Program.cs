@@ -1,6 +1,8 @@
-﻿using CursoApp.Models;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using PluginAPI;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using System.Text;
 
 namespace CursoApp
 {
@@ -18,6 +20,7 @@ namespace CursoApp
             opciones.Add(new ConsoleMenuItem() { Title = "Buscar Curso", Action = onFindCurso });
             opciones.Add(new ConsoleMenuItem() { Title = "Ver Cursos", Action = onSeeCursos });
             opciones.Add(new ConsoleMenuItem() { Title = "Completar Curso", Action = onCompletCurso });
+            opciones.Add(new ConsoleMenuItem() { Title = "Imagen", Action = onImage });
             opciones.Add(new ConsoleMenuItem() { Title = "Salir", Action = onExit });
 
             ConsoleEx.Menu("Mini Curso", opciones);
@@ -123,10 +126,24 @@ namespace CursoApp
                 return;
             }
 
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{result.GetValue<string>("message")}");
 
             //esperamos que se precione cualquier tecla.
             Continue();
+        }
+
+        static async Task onImage()
+        {
+            // Carga la imagen
+            var image = Image.Load<Rgba32>("profile.jpg");
+
+            // Convierte la imagen a un formato compatible con la consola
+            image.ToConsoleImage();
+
+            //esperamos que se precione cualquier tecla.
+            Continue();
+
         }
 
         static async Task onExit()
@@ -141,6 +158,8 @@ namespace CursoApp
             Console.ResetColor();
             Console.WriteLine("Preciona una tecla para continuar...");
             Console.ReadKey();
+            Console.Clear();
+            Console.WriteLine("\x1b[3J"); //limpia la consola incluyendo el scroll.
         }
     }
 }
