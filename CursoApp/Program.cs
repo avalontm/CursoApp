@@ -68,7 +68,6 @@ namespace CursoApp
 
         static async Task onFindCurso()
         {
-
             Console.WriteLine("Escribe el id del curso.");
             Console.Write($"Id: ");
             string curso_id = Console.ReadLine();
@@ -86,7 +85,7 @@ namespace CursoApp
             Continue();
         }
 
-        private static async Task onSeeCursos()
+        static async Task onSeeCursos()
         {
             await ConsoleEx.WaitStart("obteniendo mis cursos");
             string result = await ApiManager.Get("/api/cursos");
