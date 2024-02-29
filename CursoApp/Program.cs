@@ -46,6 +46,7 @@ namespace CursoApp
 
             if (!result.GetValue<bool>("status", true))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error: {result.GetValue<string>("message")}");
                 Continue();
                 return;
@@ -117,6 +118,7 @@ namespace CursoApp
 
             if (!result.GetValue<bool>("status", true))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error: {result.GetValue<string>("message")}");
                 Continue();
                 return;
@@ -137,6 +139,7 @@ namespace CursoApp
         static void Continue()
         {
             //esperamos que se precione cualquier tecla.
+            Console.ResetColor();
             Console.WriteLine("Preciona una tecla para continuar...");
             Console.ReadKey();
         }
