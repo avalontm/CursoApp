@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using PluginAPI;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
 using System.Text;
 
@@ -135,11 +136,28 @@ namespace CursoApp
 
         static async Task onImage()
         {
-            // Carga la imagen
-            var image = Image.Load<Rgba32>("profile.jpg");
+            Console.Write("Escribe la url: ");
+            string? url = Console.ReadLine();
 
-            // Convierte la imagen a un formato compatible con la consola
-            image.ToConsoleImage();
+            await ConsoleEx.WaitStart("descargando imagen");
+            Stream? stream = await UrlManger.GetImageStream(url);
+            await ConsoleEx.WaitEnd();
+
+            if (stream == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: No se pudo descargar la imagen.");
+                Continue();
+                return;
+            }
+
+            Image<Rgba32> image = Image.Load<Rgba32>(stream);
+
+            if (image != null)
+            {
+                // Convierte la imagen a un formato compatible con la consola
+                image.ToConsoleImage();
+            }
 
             //esperamos que se precione cualquier tecla.
             Continue();
