@@ -22,6 +22,7 @@ namespace CursoApp
             opciones.Add(new ConsoleMenuItem() { Title = "Ver Cursos", Action = onSeeCursos });
             opciones.Add(new ConsoleMenuItem() { Title = "Completar Curso", Action = onCompletCurso });
             opciones.Add(new ConsoleMenuItem() { Title = "Imagen", Action = onImage });
+            opciones.Add(new ConsoleMenuItem() { Title = "Youtube", Action = onYotube });
             opciones.Add(new ConsoleMenuItem() { Title = "Salir", Action = onExit });
 
             ConsoleEx.Menu("Mini Curso", opciones);
@@ -149,6 +150,19 @@ namespace CursoApp
             //esperamos que se precione cualquier tecla.
             Continue();
 
+        }
+
+        static async Task onYotube()
+        {
+            Console.Write("Estribe la url: ");
+            string? url = Console.ReadLine();
+
+            await ConsoleEx.WaitStart("buscando en youtube");
+            await YTManager.VideoDownload(url);
+            await ConsoleEx.WaitEnd();
+
+            //esperamos que se precione cualquier tecla.
+            Continue();
         }
 
         static async Task onExit()
