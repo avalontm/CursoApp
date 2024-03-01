@@ -136,29 +136,16 @@ namespace CursoApp
 
         static async Task onImage()
         {
-            Console.Write("Escribe la url: ");
-            string? url = Console.ReadLine();
-
-            await ConsoleEx.WaitStart("descargando imagen");
-            Stream? stream = await UrlManger.GetImageStream(url);
-            await ConsoleEx.WaitEnd();
-
-            if (stream == null)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error: No se pudo descargar la imagen.");
-                Continue();
-                return;
-            }
-
-            Image<Rgba32> image = Image.Load<Rgba32>(stream);
+            Console.Write("Escribe tus iniciales: ");
+            string? text = Console.ReadLine();
+            Image<Rgba32> image = ImageManager.Generate(text);
 
             if (image != null)
             {
                 // Convierte la imagen a un formato compatible con la consola
                 image.ToConsoleImage();
             }
-
+           
             //esperamos que se precione cualquier tecla.
             Continue();
 
